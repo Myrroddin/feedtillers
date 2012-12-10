@@ -1,11 +1,11 @@
 --[[
 	- file and project errata -
 	Project Author:		@project-author@
-	Project Date:		@project-date@
+	Project Date:		@project-date-iso@
 	Project Version:	@project-version@
 	
 	File Author:		@file-author@
-	File Date:			@file-date@
+	File Date:			@file-date-iso@
 	File Revision:		@file-revision@
 ]]--
 
@@ -20,6 +20,7 @@ local COMPLETE = _G.COMPLETE
 local ITEMS = _G.ITEMS
 local YES = _G.YES
 local NO = _G.NO
+local wipe = _G.wipe
 
 -- build addon and add localization table
 local FeedTillers = LibStub("AceAddon-3.0"):NewAddon("FeedTillers")
@@ -94,7 +95,8 @@ end
 local function data_obj_OnLeave()
 	if qtip:IsAcquired("FeedTillersTT") then
 		qtip:Release(FeedTillers.tooltip)
-		FeedTillers.tooltip = nil
+		FeedTillers.tooltip = nil		
+		wipe(completed_quests)
 	end
 end	
 
