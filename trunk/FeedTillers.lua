@@ -34,25 +34,25 @@ local addon_name = "Feed Tillers"
 --[===[@non-debug@
 local locale = GetLocale()
 if locale == "esES" then
-	addon_name = @localization(locale="esES", key="Title", namespace="ToC")@
+	addon_name = "@localization(locale="esES", key="Title", namespace="ToC")@"
 elseif locale == "esMX" then
-	addon_name = @localization(locale="esMX", key="Title", namespace="ToC")@
+	addon_name = "@localization(locale="esMX", key="Title", namespace="ToC")@"
 elseif locale == "deDE" then
-	addon_name = @localization(locale="deDE", key="Title", namespace="ToC")@
+	addon_name = "@localization(locale="deDE", key="Title", namespace="ToC")@"
 elseif locale == "frFR" then
-	addon_name = @localization(locale="frFR", key="Title", namespace="ToC")@
+	addon_name = "@localization(locale="frFR", key="Title", namespace="ToC")@"
 elseif locale == "koKR" then
-	addon_name = @localization(locale="koKR", key="Title", namespace="ToC")@
+	addon_name = "@localization(locale="koKR", key="Title", namespace="ToC")@"
 elseif locale == "ruRU" then
-	addon_name = @localization(locale="ruRU", key="Title", namespace="ToC")@
+	addon_name = "@localization(locale="ruRU", key="Title", namespace="ToC")@"
 elseif locale == "zhTW" then
-	addon_name = @localization(locale="zhTW", key="Title", namespace="ToC")@
+	addon_name = "@localization(locale="zhTW", key="Title", namespace="ToC")@"
 elseif locale == "zhCN" then
-	addon_name = @localization(locale="zhCN", key="Title", namespace="ToC")@
+	addon_name = "@localization(locale="zhCN", key="Title", namespace="ToC")@"
 elseif locale == "ptBR" then
-	addon_name = @localization(locale="ptBR", key="Title", namespace="ToC")@
+	addon_name = "@localization(locale="ptBR", key="Title", namespace="ToC")@"
 elseif locale == "itIT" then
-	addon_name = @localization(locale="itIT", key="Title", namespace="ToC")@
+	addon_name = "@localization(locale="itIT", key="Title", namespace="ToC")@"
 end
 --@end-non-debug@]===]
 
