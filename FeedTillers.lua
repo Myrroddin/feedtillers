@@ -59,16 +59,16 @@ end
 -- local variables
 -- we need to know which quests have been completed today
 local Tillers_Quests = {
-	30402, -- A Dish for Chee Chee
-	30386, -- A Dish for Ella
-	30421, -- A Dish for Farmer Fung
-	30427, -- A Dish for Fish
-	30390, -- A Dish for Gina Mudclaw
-	30414, -- A Dish for Haohan Mudclaw
 	30439, -- A Dish for Jogu
+	30386, -- A Dish for Ella
 	30396, -- A Dish for Old Hillpaw
+	30402, -- A Dish for Chee Chee
 	30408, -- A Dish for Sho
-	30433  -- A Dish for Tina Mudclaw
+	30414, -- A Dish for Haohan Mudclaw
+	30433, -- A Dish for Tina Mudclaw
+	30390, -- A Dish for Gina Mudclaw
+	30427, -- A Dish for Fish
+	30421  -- A Dish for Farmer Fung
 }
 local completed_quests
 
@@ -78,16 +78,16 @@ local function data_obj_OnEnter(frame)
 	FeedTillers.tooltip = FT_Tooltip
 	completed_quests = GetQuestsCompleted(Tillers_Quests)
 	FT_Tooltip:AddHeader(GetFactionInfoByID(1272), ITEMS, COMPLETE)
-	FT_Tooltip:AddLine(GetFactionInfoByID(1277), GetItemInfo(74647), completed_quests[30402] == true and YES or NO) -- Chee Chee
-	FT_Tooltip:AddLine(GetFactionInfoByID(1275), GetItemInfo(74651), completed_quests[30386] == true and YES or NO) -- Ella
-	FT_Tooltip:AddLine(GetFactionInfoByID(1283), GetItemInfo(74654), completed_quests[30421] == true and YES or NO) -- Farmer Fung
-	FT_Tooltip:AddLine(GetFactionInfoByID(1282), GetItemInfo(74655), completed_quests[30427] == true and YES or NO) -- Fish Fellreed
-	FT_Tooltip:AddLine(GetFactionInfoByID(1281), GetItemInfo(74644), completed_quests[30390] == true and YES or NO) -- Gina Mudclaw
-	FT_Tooltip:AddLine(GetFactionInfoByID(1279), GetItemInfo(74642), completed_quests[30414] == true and YES or NO) -- Haohan Mudclaw
 	FT_Tooltip:AddLine(GetFactionInfoByID(1273), GetItemInfo(74643), completed_quests[30439] == true and YES or NO) -- Jogu the Drunk
+	FT_Tooltip:AddLine(GetFactionInfoByID(1275), GetItemInfo(74651), completed_quests[30386] == true and YES or NO) -- Ella
 	FT_Tooltip:AddLine(GetFactionInfoByID(1276), GetItemInfo(74649), completed_quests[30396] == true and YES or NO) -- Old Hillpaw
+	FT_Tooltip:AddLine(GetFactionInfoByID(1277), GetItemInfo(74647), completed_quests[30402] == true and YES or NO) -- Chee Chee
 	FT_Tooltip:AddLine(GetFactionInfoByID(1278), GetItemInfo(74645), completed_quests[30408] == true and YES or NO) -- Sho
+	FT_Tooltip:AddLine(GetFactionInfoByID(1279), GetItemInfo(74642), completed_quests[30414] == true and YES or NO) -- Haohan Mudclaw
 	FT_Tooltip:AddLine(GetFactionInfoByID(1280), GetItemInfo(74652), completed_quests[30433] == true and YES or NO) -- Tina Mudclaw
+	FT_Tooltip:AddLine(GetFactionInfoByID(1281), GetItemInfo(74644), completed_quests[30390] == true and YES or NO) -- Gina Mudclaw
+	FT_Tooltip:AddLine(GetFactionInfoByID(1282), GetItemInfo(74655), completed_quests[30427] == true and YES or NO) -- Fish Fellreed
+	FT_Tooltip:AddLine(GetFactionInfoByID(1283), GetItemInfo(74654), completed_quests[30421] == true and YES or NO) -- Farmer Fung
 	FT_Tooltip:SmartAnchorTo(frame)
 	FT_Tooltip:Show()
 end
