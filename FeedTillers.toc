@@ -1,4 +1,5 @@
 ## Interface: 50100
+#@non-debug@
 ## Title: @localization(locale="enUS", key="Title", namespace="ToC")@
 ## Title-ruRU: @localization(locale="ruRU", key="Title", namespace="ToC")@
 ## Title-deDE: @localization(locale="deDE", key="Title", namespace="ToC")@
@@ -12,16 +13,21 @@
 ## Title-frFR: @localization(locale="frFR", key="Title", namespace="ToC")@
 
 ## Notes: @localization(locale="enUS", key="Description", namespace="ToC")@
-## Notes-ptBR: @localization(locale="ptBR", key="Description", namespace="ToC")@
-## Notes-frFR: @localization(locale="frFR", key="Description", namespace="ToC")@
+## Notes-ruRU: @localization(locale="ruRU", key="Description", namespace="ToC")@
 ## Notes-deDE: @localization(locale="deDE", key="Description", namespace="ToC")@
-## Notes-itIT: @localization(locale="itIT", key="Description", namespace="ToC")@
 ## Notes-koKR: @localization(locale="koKR", key="Description", namespace="ToC")@
 ## Notes-esMX: @localization(locale="esMX", key="Description", namespace="ToC")@
-## Notes-ruRU: @localization(locale="ruRU", key="Description", namespace="ToC")@
-## Notes-zhCN: @localization(locale="zhCN", key="Description", namespace="ToC")@
 ## Notes-esES: @localization(locale="esES", key="Description", namespace="ToC")@
+## Notes-ptBR: @localization(locale="ptBR", key="Description", namespace="ToC")@
+## Notes-zhCN: @localization(locale="zhCN", key="Description", namespace="ToC")@
 ## Notes-zhTW: @localization(locale="zhTW", key="Description", namespace="ToC")@
+## Notes-itIT: @localization(locale="itIT", key="Description", namespace="ToC")@
+## Notes-frFR: @localization(locale="frFR", key="Description", namespace="ToC")@
+#@end-non-debug@
+#@debug@
+## Title: Feed Tillers - dev build
+## Notes: Latest alpha of Feed Tillers
+#@end-debug@
 
 ## Version: @project-version@
 ## Author: Myrroddin
@@ -29,14 +35,15 @@
 ## X-Author-Faction: Alliance
 ## X-Donate: http://pledgie.com/campaigns/5989
 ## X-Category: Data Broker
-## X-License: (c) 2012 Paul "Myrroddin" Vandersypen. All Rights Reserved
+## X-License: (c) 2012 Paul "Myrroddin" Vandersypen. All Rights Reserved. See LICENSE.txt for details
+## X-Date: @project-date-iso@
+## X-Revision: @project-revision@
+## X-WoWI-ID: 21973
 
-## OptionalDeps: LibStub, CallbackHandler-1.0, Ace3, LibQTip-1.0
+## OptionalDeps: LibStub, LibQTip-1.0
 
 #@no-lib-strip@
 Libs\LibStub\LibStub.lua
-Libs\CallbackHandler-1.0\CallbackHandler-1.0.xml
-Libs\AceAddon-3.0\AceAddon-3.0.xml
 Libs\LibQTip-1.0\LibQTip-1.0.lua
 #@end-no-lib-strip@
 Libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
