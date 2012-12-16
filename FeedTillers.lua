@@ -10,13 +10,45 @@
 	File Revision:		@file-revision@
 ]]--
 
--- GLOBALS: sort, GetAddOnMetadata, GetFactionInfoByID, GetItemInfo, IsQuestFlaggedCompleted
--- GLOBALS: COMPLETE, ITEMS, NO, YES
+-- GLOBALS: sort, GetAddOnMetadata, GetFactionInfoByID, GetItemInfo, IsQuestFlaggedCompleted, GetLocale
+-- GLOBALS: COMPLETE, ITEMS, NO, YES, GameTooltip
 -- GLOBALS: LibStub
 
-local ADDON = ...
+local ADDON, L = ...
 local ADDON_TITLE = GetAddOnMetadata(ADDON, "Title")
 local TILLERS
+locale LOCALE = GetLocale()
+
+--@non-debug@
+-- translate the tooltips
+if LOCALE == "enUS" then
+@localization(locale="enUS", format="lua_additive_table")@
+elseif LOCALE == "esES" then
+@localization(locale="esES", format="lua_additive_table")@
+elseif LOCALE == "esMX" then
+@localization(locale="esMX", format="lua_additive_table")@
+elseif LOCALE == "itIT" then
+@localization(locale="itIT", format="lua_additive_table")@
+elseif LOCALE == "ptBR" then
+@localization(locale="ptBR", format="lua_additive_table")@
+elseif LOCALE == "frFR" then
+@localization(locale="frFR", format="lua_additive_table")@
+elseif LOCALE == "deDE" then
+@localization(locale="deDE", format="lua_additive_table")@
+elseif LOCALE == "ruRU" then
+@localization(locale="ruRU", format="lua_additive_table")@
+elseif LOCALE == "zhCN" then
+@localization(locale="zhCN", format="lua_additive_table")@
+elseif LOCALE == "zhTW" then
+@localization(locale="zhTW", format="lua_additive_table")@
+end
+--@end-non-debug@
+--@debug@
+if LOCALE == "enUS" then
+L["CLICK_SORT"] = "Click the plugin to sort by Tiller name or item name"
+L["SHIFT_DOWN"] = "Hold the <Shift> key to hide already fed Tillers"
+end
+--@end-debug@
 
 local qtip = LibStub("LibQTip-1.0")
 
@@ -52,6 +84,8 @@ LibStub("LibDataBroker-1.1"):NewDataObject(ADDON, {
 			currentSort = currentSort == "NAME" and "ITEM" or "NAME"
 			sort(npcs, currentSort == "NAME" and sortByName or sortByItem)
 		end
+		GameTooltip:AddLine(L.SHIFT_DOWN)
+		GameTooltip:AddLine(L.CLICK_SORT)
 		self:GetScript("OnLeave")(self)
 		self:GetScript("OnEnter")(self)
 	end,
