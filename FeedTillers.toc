@@ -1,4 +1,4 @@
-## Interface: 50100
+## Interface: 50200
 #@non-debug@
 ## Title: Feed Tillers
 
@@ -25,7 +25,7 @@
 ## X-Author-Faction: Alliance
 ## X-Donate: http://pledgie.com/campaigns/5989
 ## X-Category: Data Broker
-## X-License: (c) 2012 Paul "Myrroddin" Vandersypen. All Rights Reserved. See LICENSE.txt for details
+## X-License: (c) 2012, 2013 Paul "Myrroddin" Vandersypen. All Rights Reserved. See LICENSE.txt for details
 ## X-Date: @project-date-iso@
 ## X-Revision: @project-revision@
 ## X-WoWI-ID: 21973
