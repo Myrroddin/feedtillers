@@ -1,4 +1,4 @@
-## Interface: 50200
+## Interface: 50300
 #@non-debug@
 ## Title: Feed Tillers
 
@@ -23,7 +23,7 @@
 ## Author: Myrroddin
 ## X-Author-Server: Llane US
 ## X-Author-Faction: Alliance
-## X-Donate: http://pledgie.com/campaigns/5989
+## X-Donate: http://pledgie.com/campaigns/19879
 ## X-Category: Data Broker
 ## X-License: (c) 2012, 2013 Paul "Myrroddin" Vandersypen. All Rights Reserved. See LICENSE.txt for details
 ## X-Date: @project-date-iso@
@@ -32,7 +32,7 @@
 
 ## SavedVariables: FeedTillers_hideComplete, FeedTillers_currentSort
 
-## OptionalDeps: LibStub, LibQTip-1.0
+## OptionalDeps: LibStub, LibQTip-1.0, LibDataBroker-1.1
 
 #@no-lib-strip@
 Libs\LibStub\LibStub.lua
