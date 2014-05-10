@@ -23,23 +23,23 @@ local event_frame = CreateFrame("frame")
 
 -- translate the tooltips
 if LOCALE == "esES" then
---@localization(locale="esES", format="lua_additive_table")@
+--@localization(locale="esES", format="lua_additive_table", handle-unlocalized="english")@
 elseif LOCALE == "esMX" then
---@localization(locale="esMX", format="lua_additive_table")@
+--@localization(locale="esMX", format="lua_additive_table", handle-unlocalized="english")@
 elseif LOCALE == "itIT" then
---@localization(locale="itIT", format="lua_additive_table")@
+--@localization(locale="itIT", format="lua_additive_table", handle-unlocalized="english")@
 elseif LOCALE == "ptBR" then
---@localization(locale="ptBR", format="lua_additive_table")@
+--@localization(locale="ptBR", format="lua_additive_table", handle-unlocalized="english")@
 elseif LOCALE == "frFR" then
---@localization(locale="frFR", format="lua_additive_table")@
+--@localization(locale="frFR", format="lua_additive_table", handle-unlocalized="english")@
 elseif LOCALE == "deDE" then
---@localization(locale="deDE", format="lua_additive_table")@
+--@localization(locale="deDE", format="lua_additive_table", handle-unlocalized="english")@
 elseif LOCALE == "ruRU" then
---@localization(locale="ruRU", format="lua_additive_table")@
+--@localization(locale="ruRU", format="lua_additive_table", handle-unlocalized="english")@
 elseif LOCALE == "zhCN" then
---@localization(locale="zhCN", format="lua_additive_table)@
+--@localization(locale="zhCN", format="lua_additive_table", handle-unlocalized="english")@
 elseif LOCALE == "zhTW" then
---@localization(locale="zhTW", format="lua_additive_table")@
+--@localization(locale="zhTW", format="lua_additive_table", handle-unlocalized="english")@
 else
 L["CLICK_SORT"] = "Click the plugin to sort by Tiller name or item name"
 L["SHIFT_DOWN"] = "Hold the <Shift> key and click to hide already fed Tillers"
