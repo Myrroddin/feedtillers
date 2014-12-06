@@ -2,17 +2,17 @@
 #@non-debug@
 ## Title: Feed Tillers
 
-## Notes: --@localization(locale="enUS", key="Description", namespace="ToC")@
-## Notes-ruRU: --@localization(locale="ruRU", key="Description", namespace="ToC", handle-unlocalized="english")@
-## Notes-deDE: --@localization(locale="deDE", key="Description", namespace="ToC", handle-unlocalized="english")@
-## Notes-koKR: --@localization(locale="koKR", key="Description", namespace="ToC", handle-unlocalized="english")@
-## Notes-esMX: --@localization(locale="esMX", key="Description", namespace="ToC", handle-unlocalized="english")@
-## Notes-esES: --@localization(locale="esES", key="Description", namespace="ToC", handle-unlocalized="english")@
-## Notes-ptBR: --@localization(locale="ptBR", key="Description", namespace="ToC", handle-unlocalized="english")@
-## Notes-zhCN: --@localization(locale="zhCN", key="Description", namespace="ToC", handle-unlocalized="english")@
-## Notes-zhTW: --@localization(locale="zhTW", key="Description", namespace="ToC", handle-unlocalized="english")@
-## Notes-itIT: --@localization(locale="itIT", key="Description", namespace="ToC", handle-unlocalized="english")@
-## Notes-frFR: --@localization(locale="frFR", key="Description", namespace="ToC", handle-unlocalized="english")@
+## Notes: Tells you the Tiller, what food they like, and if you have fed them today for the quests A Dish for ...
+## Notes-ruRU: @localization(locale="ruRU", key="Description", namespace="ToC", handle-unlocalized="english")@
+## Notes-deDE: @localization(locale="deDE", key="Description", namespace="ToC", handle-unlocalized="english")@
+## Notes-koKR: @localization(locale="koKR", key="Description", namespace="ToC", handle-unlocalized="english")@
+## Notes-esMX: @localization(locale="esMX", key="Description", namespace="ToC", handle-unlocalized="english")@
+## Notes-esES: @localization(locale="esES", key="Description", namespace="ToC", handle-unlocalized="english")@
+## Notes-ptBR: @localization(locale="ptBR", key="Description", namespace="ToC", handle-unlocalized="english")@
+## Notes-zhCN: @localization(locale="zhCN", key="Description", namespace="ToC", handle-unlocalized="english")@
+## Notes-zhTW: @localization(locale="zhTW", key="Description", namespace="ToC", handle-unlocalized="english")@
+## Notes-itIT: @localization(locale="itIT", key="Description", namespace="ToC", handle-unlocalized="english")@
+## Notes-frFR: @localization(locale="frFR", key="Description", namespace="ToC", handle-unlocalized="english")@
 #@end-non-debug@
 #@debug@
 ## Title: Feed Tillers - dev build
@@ -23,7 +23,6 @@
 ## Author: Myrroddin
 ## X-Author-Server: Llane US
 ## X-Author-Faction: Alliance
-## X-Donate: http://pledgie.com/campaigns/19879
 ## X-Category: Data Broker
 ## X-License: (c) 2012, 2013, 2014 Paul "Myrroddin" Vandersypen. All Rights Reserved. See LICENSE.txt for details
 ## X-Date: @project-date-iso@
