@@ -1,7 +1,5 @@
 ## Interface: 60000
-#@non-debug@
 ## Title: Feed Tillers
-
 ## Notes: Tells you the Tiller, what food they like, and if you have fed them today for the quests A Dish for ...
 ## Notes-ruRU: @localization(locale="ruRU", key="Description", namespace="ToC", handle-unlocalized="english")@
 ## Notes-deDE: @localization(locale="deDE", key="Description", namespace="ToC", handle-unlocalized="english")@
@@ -13,11 +11,6 @@
 ## Notes-zhTW: @localization(locale="zhTW", key="Description", namespace="ToC", handle-unlocalized="english")@
 ## Notes-itIT: @localization(locale="itIT", key="Description", namespace="ToC", handle-unlocalized="english")@
 ## Notes-frFR: @localization(locale="frFR", key="Description", namespace="ToC", handle-unlocalized="english")@
-#@end-non-debug@
-#@debug@
-## Title: Feed Tillers - dev build
-## Notes: Latest alpha of Feed Tillers
-#@end-debug@
 
 ## Version: @project-version@
 ## Author: Myrroddin
