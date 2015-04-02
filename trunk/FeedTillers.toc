@@ -1,4 +1,4 @@
-## Interface: 60000
+## Interface: 60100
 ## Title: Feed Tillers
 ## Notes: Tells you the Tiller, what food they like, and if you have fed them today for the quests A Dish for ...
 ## Notes-ruRU: @localization(locale="ruRU", key="Description", namespace="ToC")@
@@ -17,7 +17,7 @@
 ## X-Author-Server: Llane US
 ## X-Author-Faction: Alliance
 ## X-Category: Data Broker
-## X-License: (c) 2012, 2013, 2014 Paul "Myrroddin" Vandersypen. All Rights Reserved. See LICENSE.txt for details
+## X-License: (c) 2012 - 2015 Paul "Myrroddin" Vandersypen. All Rights Reserved. See LICENSE.txt for details
 ## X-Date: @project-date-iso@
 ## X-Revision: @project-revision@
 ## X-WoWI-ID: 21973
