@@ -1,4 +1,4 @@
-## Interface: 60100
+## Interface: 60200
 ## Title: Feed Tillers
 ## Notes: Tells you the Tiller, what food they like, and if you have fed them today for the quests A Dish for ...
 ## Notes-ruRU: @localization(locale="ruRU", key="Description", namespace="ToC")@
