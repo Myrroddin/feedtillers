@@ -1,8 +1,10 @@
 ﻿package-as: FeedTillers
 
 externals:
-    Libs/LibStub: https://repos.wowace.com/wow/libstub/trunk
-    Libs/LibQTip-1.0: https://repos.wowace.com/wow/libqtip-1-0
+    Libs/LibStub:
+        url: https://repos.wowace.com/wow/libstub/trunk
+    Libs/LibQTip-1.0:
+        url: https://repos.wowace.com/wow/libqtip-1-0
 
 tools-used:
     - libdatabroker-1-1
@@ -11,3 +13,6 @@ optional-dependencies:
     - tomtom
 
 license-output: LICENSE.txt
+
+ignore:
+    - LibStub/tests
