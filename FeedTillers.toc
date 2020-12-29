@@ -13,8 +13,8 @@
 ## Notes-frFR: @localization(locale="frFR", key="Description", namespace="ToC")@
 
 ## Version: @project-version@
-## Author: Myrroddin
-## X-Author-Server: Llane US
+## Author: Sygon
+## X-Author-Server: Lightbringer US
 ## X-Author-Faction: Alliance
 ## X-Category: Data Broker
 ## X-License: (c) 2012 - 2020 Paul "Myrroddin" Vandersypen. All Rights Reserved. See LICENSE.txt for details
@@ -23,7 +23,7 @@
 ## X-Curse-Project-ID: 48246
 ## X-WoWI-ID: 21973
 
-## SavedVariables: FeedTillers_hideComplete, FeedTillers_currentSort
+## SavedVariables: FeedTillersDB
 
 ## OptionalDeps: LibStub, LibQTip-1.0, LibDataBroker-1.1, TomTom
 
