@@ -1,0 +1,10 @@
+﻿package-as: FeedTillers
+
+externals:
+    Libs/LibStub: https://repos.wowace.com/wow/libstub/trunk
+    Libs/LibQTip-1.0: https://repos.wowace.com/wow/libqtip-1-0
+
+tools-used:
+    - libdatabroker-1-1
+
+license-output: LICENSE.txt
