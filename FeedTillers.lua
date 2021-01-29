@@ -165,7 +165,7 @@ local function CreateBroker()
 					FeedTillersDB["Tillers"][npc.name] = npc.item
 				end
 
-				if not IsQuestFlaggedCompleted(npc.questID) then
+				if not C_QuestLog.IsQuestFlaggedCompleted(npc.questID) then
 					-- note "line" is no longer local to this scope!
 					local count = GetItemCount(npc.itemID)
 					line = tooltip:AddLine(npc.name, FeedTillersDB["Tillers"][npc.name], format("%d/%d", count, 5))
@@ -176,7 +176,7 @@ local function CreateBroker()
 				elseif showComplete then
 					line = tooltip:AddLine(npc.name, FeedTillersDB["Tillers"][npc.name], YES)
 					tooltip:SetLineTextColor(line, 0, 0.5, 0, 0.7)
-				elseif not showBestFriends and not hasNextLevel or not showComplete and IsQuestFlaggedCompleted(npc.questID) then
+				elseif not showBestFriends and not hasNextLevel or not showComplete and C_QuestLog.IsQuestFlaggedCompleted(npc.questID) then
 					line = tooltip:AddLine() -- add empty line with no height
 				end
 
