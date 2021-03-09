@@ -1,4 +1,4 @@
-## Interface: 90002
+## Interface: 90005
 ## Title: Feed Tillers
 ## Notes: Tells you the Tiller, what food they like, and if you have fed them today for the quests A Dish for ...
 ## Notes-ruRU: @localization(locale="ruRU", key="Description", namespace="ToC")@
@@ -27,10 +27,8 @@
 
 ## OptionalDeps: LibStub, LibQTip-1.0, LibDataBroker-1.1, TomTom
 
-#@no-lib-strip@
 Libs\LibStub\LibStub.lua
 Libs\LibQTip-1.0\LibQTip-1.0.lua
-#@end-no-lib-strip@
 Libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
 
 FeedTillers.lua
