@@ -1,0 +1,11 @@
+{
+    "Lua.diagnostics.disable": [
+        "param-type-mismatch"
+    ],
+    "Lua.diagnostics.globals": [
+        "ITEMS",
+        "COMPLETE",
+        "NORMAL_FONT_COLOR_CODE",
+        "YES"
+    ]
+}

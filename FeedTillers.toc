@@ -17,7 +17,7 @@
 ## X-Author-Server: Lightbringer US
 ## X-Author-Faction: Alliance
 ## X-Category: Data Broker
-## X-License: (c) 2022 Paul Vandersypen. All Rights Reserved.
+## X-License: (c) 2023 Paul Vandersypen. All Rights Reserved.
 ## X-Date: @project-date-iso@
 ## X-Revision: @project-revision@
 ## X-Curse-Project-ID: 48246
