@@ -154,7 +154,7 @@ local function CreateBroker()
 			for i = 1, #npcs do
 				local npc = npcs[i]
 				npc.name, npc.noop, npc.standingID = GetFactionInfoByID(npc.factionID) -- npc.noop is not used by FeedTillers
-				local hasNextLevel = select(9, GetFriendshipReputation(npc.factionID)) -- will be nil if Best Friend
+				local hasNextLevel = select(9, C_GossipInfo.GetFriendshipReputation(npc.factionID)) -- will be nil if Best Friend
 				if not npc.item then
 					npc.item = GetItemInfo(npc.itemID)
 				end
@@ -185,15 +185,6 @@ local function CreateBroker()
 				end
 			end
 
-			--[[
-			if not line then
-				showComplete = nil
-				showBestFriends = nil
-				self:GetScript("OnLeave")(self)
-				return self:GetScript("OnEnter")(self)
-			end
-			]]--
-
 			line = tooltip:AddLine(" ") -- blank line
 
 			line = tooltip:AddLine(" ")
@@ -213,12 +204,8 @@ local function CreateBroker()
 			tooltip:Show()
 		end,
 		OnLeave = function(self)
-			--[[
-			if qtip:IsAcquired("FeedTillersTT") then
-				qtip:Release(tooltip)
-			end
+			qtip:Release(tooltip)
 			tooltip = nil
-			]]--
 		end
 	})
 end

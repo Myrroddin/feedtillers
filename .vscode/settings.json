@@ -6,6 +6,8 @@
         "ITEMS",
         "COMPLETE",
         "NORMAL_FONT_COLOR_CODE",
-        "YES"
+        "YES",
+        "NONE",
+        "FACTION_INACTIVE"
     ]
 }
