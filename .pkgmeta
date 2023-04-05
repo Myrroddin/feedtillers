@@ -4,9 +4,7 @@ wowi-archive-previous: no
 externals:
     Libs/LibStub: https://repos.curseforge.com/wow/libstub/trunk
     Libs/LibQTip-1.0: https://repos.curseforge.com/wow/libqtip-1-0
-
-tools-used:
-    - libdatabroker-1-1
+    Libs/LibDataBroker-1.1: https://repos.curseforge.com/wow/libdatabroker-1-1
 
 optional-dependencies:
     - tomtom
