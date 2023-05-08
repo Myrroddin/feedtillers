@@ -11,6 +11,7 @@
 ## Notes-zhTW: @localization(locale="zhTW", key="Description", namespace="ToC")@
 ## Notes-itIT: @localization(locale="itIT", key="Description", namespace="ToC")@
 ## Notes-frFR: @localization(locale="frFR", key="Description", namespace="ToC")@
+## IconTexture: Interface\ICONS\Achievement_Profession_ChefHat
 
 ## Version: @project-version@
 ## Author: Sygon
