@@ -10,6 +10,7 @@
 	File Revision:		@file-revision@
 ]]--
 
+local GetAddOnMetadata = C_AddOns and C_AddOns.GetAddOnMetadata
 local ADDON, AddOn = ...
 local ADDON_TITLE = GetAddOnMetadata(ADDON, "Title")
 local TILLERS
