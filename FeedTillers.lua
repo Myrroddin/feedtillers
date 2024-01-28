@@ -10,13 +10,15 @@
 	File Revision:		@file-revision@
 ]]--
 
-local GetAddOnMetadata = C_AddOns and C_AddOns.GetAddOnMetadata
 local ADDON, AddOn = ...
-local ADDON_TITLE = GetAddOnMetadata(ADDON, "Title")
+local ADDON_TITLE = C_AddOns and C_AddOns.GetAddOnMetadata(ADDON, "Title")
 local TILLERS
 local LOCALE = GetLocale()
 local event_frame = CreateFrame("frame")
 local tooltip = "NAME"
+
+local qtip = LibStub("LibQTip-1.0")
+local TomTom = _G.TomTom
 
 local L = setmetatable({}, {__index = function(t, k)
 	local v = tostring(k)
@@ -59,9 +61,6 @@ return end
 if LOCALE == "zhTW" then
 --@localization(locale="zhTW", format="lua_additive_table")@
 return end
-
-local qtip = LibStub("LibQTip-1.0")
-local TomTom = _G.TomTom
 
 local npcs = {
 	{ factionID = 1273, itemID = 74643, questID = 30439, x = 52.6, y = 49.2 }, -- Jogu the Drunk
