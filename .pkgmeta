@@ -2,15 +2,15 @@
 wowi-archive-previous: no
 
 externals:
-    Libs/LibStub: https://repos.curseforge.com/wow/libstub/trunk
-    Libs/LibQTip-1.0: https://repos.curseforge.com/wow/libqtip-1-0
+  Libs/LibStub: https://repos.curseforge.com/wow/libstub/trunk
+  Libs/LibQTip-1.0: https://repos.curseforge.com/wow/libqtip-1-0
   Libs/LibDataBroker-1.1:
     url: https://github.com/tekkub/libdatabroker-1-1/
     curse-slug: libdatabroker-1-1
 
 optional-dependencies:
-    - tomtom
+  - tomtom
 
 ignore:
-    - LibStub/tests
-    - Libs/*/*.textile
+  - LibStub/tests
+  - Libs/*/*.textile
