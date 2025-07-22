@@ -1,4 +1,4 @@
-## Interface: 110002
+## Interface: 50500, 110107
 ## Title: Feed Tillers
 ## Notes: Tells you the Tiller, what food they like, and if you have fed them today for the quests A Dish for ...
 ## Notes-ruRU: @localization(locale="ruRU", key="Description", namespace="ToC")@
@@ -18,7 +18,7 @@
 ## X-Author-Server: Lightbringer US
 ## X-Author-Faction: Alliance
 ## X-Category: Data Broker
-## X-License: (c) 2024 Paul Vandersypen. All Rights Reserved.
+## X-License: (c) 2024-2025 Paul Vandersypen. All Rights Reserved.
 ## X-Date: @project-date-iso@
 ## X-Revision: @project-revision@
 ## X-Curse-Project-ID: 48246
