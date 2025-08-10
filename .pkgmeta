@@ -14,3 +14,4 @@ optional-dependencies:
 ignore:
   - LibStub/tests
   - Libs/*/*.textile
+  - README.md

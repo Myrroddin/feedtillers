@@ -21,7 +21,8 @@ local qtip = LibStub("LibQTip-1.0")
 local TomTom = _G.TomTom
 
 -- API compatibility
-local GetFactionInfoByID = C_Reputation.GetFactionInfoByID or GetFactionInfoByID
+local isMainline = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
+local GetFactionInfoByID = not (isMainline and GetFactionInfoByID) or C_Reputation.GetFactionInfoByID
 
 local L = setmetatable({}, {__index = function(t, k)
 	local v = tostring(k)
@@ -140,10 +141,20 @@ local function CreateBroker()
 
 			for i = 1, #npcs do
 				local npc = npcs[i]
-				npc.name, npc.noop, npc.standingID = C_Reputation.GetFactionInfoByID(npc.factionID) -- npc.noop is not used by FeedTillers
-				local hasNextLevel = select(9, C_GossipInfo.GetFriendshipReputation(npc.factionID)) -- will be nil if Best Friend
+				-- mainline returns a table, classic just the values
+				if isMainline then
+					local factionData = GetFactionInfoByID(npc.factionID)
+					npc.name, npc.standingID = factionData.name, factionData.reaction
+				else
+					npc.name, _, npc.standingID = GetFactionInfoByID(npc.factionID)
+				end
+				local hasNextLevel = C_GossipInfo.GetFriendshipReputation(npc.factionID).nextThreshold -- will be nil if Best Friend
 				if not npc.item then
-					npc.item = C_Item.GetItemInfo(npc.itemID)
+					local item = Item:CreateFromItemID(npc.itemID)
+					item:ContinueOnItemLoad(function()
+						npc.item = item:GetItemName()
+					end)
+					npc.item = npc.item or C_Item.GetItemInfo(npc.itemID)
 				end
 
 				-- cache the item so we don't have to keep looking it up
