@@ -11,7 +11,7 @@
 ]]--
 
 local ADDON = ...
-local ADDON_TITLE = C_AddOns and C_AddOns.GetAddOnMetadata(ADDON, "Title")
+local ADDON_TITLE = C_AddOns.GetAddOnMetadata(ADDON, "Title")
 local TILLERS
 local LOCALE = GetLocale()
 local event_frame = CreateFrame("frame")
@@ -28,39 +28,23 @@ end})
 
 if LOCALE == "deDE" then
 --@localization(locale="deDE", format="lua_additive_table")@
-return end
-
-if LOCALE == "esES" or LOCALE == "esMX" then
+elseif LOCALE == "esES" or LOCALE == "esMX" then
 --@localization(locale="esES", format="lua_additive_table")@
-return end
-
-if LOCALE == "frFR" then
+elseif LOCALE == "frFR" then
 --@localization(locale="frFR", format="lua_additive_table")@
-return end
-
-if LOCALE == "itIT" then
+elseif LOCALE == "itIT" then
 --@localization(locale="itIT", format="lua_additive_table")@
-return end
-
-if LOCALE == "koKR" then
+elseif LOCALE == "koKR" then
 --@localization(locale="koKR", format="lua_additive_table")@
-return end
-
-if LOCALE == "ptBR" then
+elseif LOCALE == "ptBR" then
 --@localization(locale="ptBR", format="lua_additive_table")@
-return end
-
-if LOCALE == "ruRU" then
+elseif LOCALE == "ruRU" then
 --@localization(locale="ruRU", format="lua_additive_table")@
-return end
-
-if LOCALE == "zhCN" then
+elseif LOCALE == "zhCN" then
 --@localization(locale="zhCN", format="lua_additive_table")@
-return end
-
-if LOCALE == "zhTW" then
+elseif LOCALE == "zhTW" then
 --@localization(locale="zhTW", format="lua_additive_table")@
-return end
+end
 
 local npcs = {
 	{ factionID = 1273, itemID = 74643, questID = 30439, x = 52.6, y = 49.2 }, -- Jogu the Drunk
@@ -82,7 +66,7 @@ local sortByItem = function(a, b)
 	return a.item < b.item
 end
 
-local function UseTomTom(frame, npc)
+local function UseTomTom(_, npc)
 	local x, y = npc.x/100, npc.y/100
 	TomTom:AddWaypoint(376, x, y, {
 		title = npc.name,
@@ -153,10 +137,10 @@ local function CreateBroker()
 
 			for i = 1, #npcs do
 				local npc = npcs[i]
-				npc.name, npc.noop, npc.standingID = GetFactionInfoByID(npc.factionID) -- npc.noop is not used by FeedTillers
+				npc.name, npc.noop, npc.standingID = C_Reputation.GetFactionInfoByID(npc.factionID) -- npc.noop is not used by FeedTillers
 				local hasNextLevel = select(9, C_GossipInfo.GetFriendshipReputation(npc.factionID)) -- will be nil if Best Friend
 				if not npc.item then
-					npc.item = GetItemInfo(npc.itemID)
+					npc.item = C_Item.GetItemInfo(npc.itemID)
 				end
 
 				-- cache the item so we don't have to keep looking it up
@@ -167,7 +151,7 @@ local function CreateBroker()
 
 				if not C_QuestLog.IsQuestFlaggedCompleted(npc.questID) then
 					-- note "line" is no longer local to this scope!
-					local count = GetItemCount(npc.itemID)
+					local count = C_Item.GetItemCount(npc.itemID)
 					line = tooltip:AddLine(npc.name, FeedTillersDB["Tillers"][npc.name], format("%d/%d", count, 5))
 
 					if count < 5 then
@@ -211,17 +195,13 @@ local function CreateBroker()
 end
 
 event_frame:RegisterEvent("PLAYER_LOGIN")
-event_frame:SetScript("OnEvent", function(self, ...)
+event_frame:SetScript("OnEvent", function(_, ...)
 	if ... == "PLAYER_LOGIN" then
 		FeedTillersDB = FeedTillersDB or {}
 		FeedTillersDB["Tillers"] = FeedTillersDB["Tillers"] or {}
 		FeedTillersDB.showComplete = FeedTillersDB.showComplete or true
 		FeedTillersDB.showBestFriends = FeedTillersDB.showBestFriends or true
 		FeedTillersDB.currentSort = FeedTillersDB.currentSort or "NAME"
-
-		-- clean up old saved variables
-		FeedTillers_hideComplete = nil
-		FeedTillers_currentSort = nil
 
 		CreateBroker()
 	end
