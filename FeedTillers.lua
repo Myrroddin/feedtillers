@@ -20,6 +20,9 @@ local tooltip = "NAME"
 local qtip = LibStub("LibQTip-1.0")
 local TomTom = _G.TomTom
 
+-- API compatibility
+local GetFactionInfoByID = C_Reputation.GetFactionInfoByID or GetFactionInfoByID
+
 local L = setmetatable({}, {__index = function(t, k)
 	local v = tostring(k)
 	rawset(t, k, v)
@@ -47,7 +50,7 @@ elseif LOCALE == "zhTW" then
 end
 
 local npcs = {
-	{ factionID = 1273, itemID = 74643, questID = 30439, x = 52.6, y = 49.2 }, -- Jogu the Drunk
+	{ factionID = 1273, itemID = 74643, questID = 30439, x = 53.6, y = 52.6 }, -- Jogu the Drunk
 	{ factionID = 1275, itemID = 74651, questID = 30386, x = 31.6, y = 58.0 }, -- Ella
 	{ factionID = 1276, itemID = 74649, questID = 30396, x = 31.0, y = 53.0 }, -- Old Hillpaw
 	{ factionID = 1277, itemID = 74647, questID = 30402, x = 34.4, y = 46.8 }, -- Chee Chee
