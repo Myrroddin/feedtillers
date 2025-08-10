@@ -120,10 +120,18 @@ local function CreateBroker()
 		end,
 		OnEnter = function(self)
 			if not TILLERS then
-				TILLERS = GetFactionInfoByID(1272)
+				if isMainline then
+					TILLERS = GetFactionInfoByID(1272).name
+				else
+					TILLERS = GetFactionInfoByID(1272)
+				end
 				for i = 1, #npcs do
 					local npc = npcs[i]
-					npc.name = GetFactionInfoByID(npc.factionID)
+					if isMainline then
+						npc.name = GetFactionInfoByID(npc.factionID).name
+					else
+						npc.name = GetFactionInfoByID(npc.factionID)
+					end
 				end
 				sort(npcs, sortByName)
 			end
