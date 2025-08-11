@@ -17,3 +17,5 @@ There are are a few words and phrases which need translating, and they can be fo
 ## Bugs and Suggestions
 
 Please use [GitHub Issues](https://github.com/Myrroddin/feedtillers/issues) for bugs and suggestions.
+
+![Feed Tillers displayed in Titan Panel](FeedTillers.jpg)

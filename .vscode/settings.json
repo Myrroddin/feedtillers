@@ -8,7 +8,15 @@
         "NORMAL_FONT_COLOR_CODE",
         "YES",
         "NONE",
-        "FACTION_INACTIVE"
+        "FACTION_INACTIVE",
+        "StaticPopupDialogs",
+        "SlashCmdList",
+        "ChatFrame1",
+        "WorldMapFrame",
+        "FACTION_HORDE",
+        "FACTION_ALLIANCE",
+        "WorldMapMixin",
+        "StaticPopup_Show"
     ],
     "Lua.runtime.version": "Lua 5.1",
     "Lua.runtime.builtin": {
