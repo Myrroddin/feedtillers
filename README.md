@@ -18,4 +18,4 @@ There are are a few words and phrases which need translating, and they can be fo
 
 Please use [GitHub Issues](https://github.com/Myrroddin/feedtillers/issues) for bugs and suggestions.
 
-![Feed Tillers displayed in Titan Panel](FeedTillers.jpg)
+![FeedTillers](https://github.com/user-attachments/assets/7a4f9bcb-49be-4d82-8048-4ab3f6626523)
