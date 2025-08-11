@@ -4,7 +4,7 @@ A simple Data Broker (LDB) plugin that lists the Tiller, what food they want for
 
 ## You need a LibDataBroker "Broker" display.
 
-Some examples include ChocolateBar, NinjaPanel, Fortress, StatCore. While Titan Panel supports Broker plugins, it is not a native Broker display, and comes pre-loaded with its own Titan plugins. The advantage of Broker displays (aside from Titan Panel) is that you can change display addons without impacting plugins or plugin settings.
+Some examples include ChocolateBar, NinjaPanel, Fortress, StatCore. While Titan Panel supports Broker plugins, it is not a native Broker display, and comes preloaded with its own Titan plugins. The advantage of Broker displays (aside from Titan Panel) is that you can change display addons without impacting plugins or plugin settings.
 
 ## Optional support for TomTom
 
@@ -12,7 +12,7 @@ If you have [TomTom](https://www.curseforge.com/wow/addons/tomtom) installed, yo
 
 ## Translating into other languages
 
-There are are a few words and phrases which need translating, and they can be found in the [localization app](https://www.wowace.com/projects/feedtillers/localization). You can use your Curseforge/Twitch login if required.
+There are a few words and phrases which need translating, and they can be found in the [localization app](https://legacy.curseforge.com/wow/addons/feedtillers/localization). You can use your Curseforge/Twitch login if required.
 
 ## Bugs and Suggestions
 
