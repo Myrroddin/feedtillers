@@ -12,7 +12,7 @@ If you have [TomTom](https://www.curseforge.com/wow/addons/tomtom) installed, yo
 
 ## Translating into other languages
 
-There are a few words and phrases which need translating, and they can be found in the [localization app](https://legacy.curseforge.com/wow/addons/feedtillers/localization). You can use your Curseforge/Twitch login if required.
+There are a few words and phrases which need translating, and they can be found in the [localization app](https://legacy.curseforge.com/wow/addons/feedtillers/localization). You can use your Curseforge/Twitch login if required. As of FeedTillers version 2.1.1, I used ChatGPT to create any missing localizations. If there are any errors, please create a ticket on GitHub stating which locale you have corrected.
 
 ## Bugs and Suggestions
 
