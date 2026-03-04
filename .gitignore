@@ -1,0 +1,25 @@
+# BigWigs packager output
+.release/
+
+# Packaged archives created locally
+*.zip
+
+# Lua tooling caches
+.luacov
+.luacov.stats.out
+luacov.report.out
+
+# Editor / IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# OS / temp files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.swp
+*~
+*.bak
+*.orig

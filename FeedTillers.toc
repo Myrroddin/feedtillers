@@ -1,4 +1,4 @@
-## Interface: 50502, 110205, 120000
+## Interface: 120001, 50503
 ## Title: Feed Tillers
 ## Notes: Tells you the Tiller, what food they like, and if you have fed them today for the quests A Dish for ...
 ## Notes-ruRU: @localization(locale="ruRU", key="Description", namespace="ToC")@
@@ -17,8 +17,18 @@
 ## Author: Sygon
 ## X-Author-Server: Lightbringer US
 ## X-Author-Faction: Alliance
-## X-Category: Data Broker
-## X-License: Copyright © 2012-2025 Paul Vandersypen. All Rights Reserved.
+## Category: Data Broker
+## Category-deDE: Datenbroker
+## Category-esES: Intermediario de Datos
+## Category-esMX: Intermediario de Datos
+## Category-frFR: Courtier de Données
+## Category-itIT: Data Broker
+## Category-koKR: 데이터 브로커
+## Category-ptBR: Corretor de Dados
+## Category-ruRU: Посредник данных
+## Category-zhCN: 数据管理
+## Category-zhTW: 資料管理
+## X-License: Copyright © 2012-2026 Paul Vandersypen. All Rights Reserved.
 ## X-Date: @project-date-iso@
 ## X-Revision: @project-revision@
 ## X-Curse-Project-ID: 48246
