@@ -17,23 +17,55 @@ local ADDON = ...
 local ADDON_TITLE = C_AddOns.GetAddOnMetadata(ADDON, "Title")
 local LOCALE = GetLocale()
 
+-- Upvalues for frequently used globals/API calls.
+local ipairs = ipairs
+local tostring = tostring
+local print = print
+local sort = table.sort
+local format = string.format
+local C_Map_GetBestMapForUnit = C_Map.GetBestMapForUnit
+local C_Map_GetMapInfo = C_Map.GetMapInfo
+local C_GossipInfo_GetFriendshipReputation = C_GossipInfo.GetFriendshipReputation
+local C_QuestLog_IsQuestFlaggedCompleted = C_QuestLog.IsQuestFlaggedCompleted
+local C_Item_GetItemCount = C_Item.GetItemCount
+local GetFactionDataByID = C_Reputation and C_Reputation.GetFactionDataByID or GetFactionDataByID
+local IsShiftKeyDown, IsControlKeyDown = IsShiftKeyDown, IsControlKeyDown
+
+local TOOLTIP_KEY = "FeedTillersTT"
+local TOOLTIP_COLS = 3
+local TOOLTIP_ALIGN_LEFT = "LEFT"
+local TOOLTIP_ALIGN_RIGHT = "RIGHT"
+local TOOLTIP_SPAN_ALL = 3
+local TOOLTIP_BLANK = " "
+local DAILY_ITEM_COUNT = 5
+local NORMAL_FONT_COLOR_CODE = NORMAL_FONT_COLOR_CODE
+
+local TILLERS_FACTION_NAME
+local ITEMS, COMPLETE, YES = ITEMS, COMPLETE, YES
+local activeTooltip
+
+local function HandleTooltipRelease(tooltip)
+	if activeTooltip == tooltip then
+		activeTooltip = nil
+	end
+end
+
 local event_frame = CreateFrame("Frame")
 local qtip = LibStub("LibQTip-1.0")
 local TomTom = TomTom -- Optional dependency
 
 -- API compatibility flags
 local isMainline	= WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
-local isMists		= WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
 
 -------------------------------------------------
 -- Unified Faction API Wrapper
 -------------------------------------------------
 local function GetFactionData(factionID)
 	if isMainline then
-		local data = C_Reputation.GetFactionDataByID(factionID)
+		local data = GetFactionDataByID(factionID)
 		if not data then return nil end
 		return data.name, data.reaction, _G["FACTION_STANDING_LABEL"..data.reaction]
-	elseif isMists then
+	else
 		local name, _, standingID = GetFactionInfoByID(factionID)
 		return name, standingID, _G["FACTION_STANDING_LABEL"..standingID]
 	end
@@ -122,8 +154,8 @@ local function UseTomTom(_, npc)
 	}
 	TomTom:AddWaypoint(376, x, y, opts) -- 376 is the mapID for Valley of the Four Winds
 
-	local uiMapID = C_Map.GetBestMapForUnit("player")
-	local info = C_Map.GetMapInfo(uiMapID)
+	local uiMapID = C_Map_GetBestMapForUnit("player")
+	local info = C_Map_GetMapInfo(uiMapID)
 	if not info or info.parentMapID ~= 424 then
 		print("|cFF00FF00FeedTillers:|r " .. L["You are not on Pandaria currently. Once you are on that continent the waypoint arrow will display."])
 	end
@@ -162,12 +194,13 @@ local function CreateBroker()
 				CacheAllItems() -- Ensure all items are cached on first hover
 			end
 
-			local tooltip = qtip:Acquire("FeedTillersTT", 3, "LEFT", "LEFT", "RIGHT")
+			local tooltip = qtip:Acquire(TOOLTIP_KEY, TOOLTIP_COLS, TOOLTIP_ALIGN_LEFT, TOOLTIP_ALIGN_LEFT, TOOLTIP_ALIGN_RIGHT)
+			activeTooltip = tooltip
 			tooltip:SmartAnchorTo(self)
-			tooltip:SetAutoHideDelay(0.1, self)
+			tooltip:SetAutoHideDelay(0.1, self, HandleTooltipRelease)
 			tooltip:EnableMouse(true)
 			tooltip:Clear()
-			tooltip:AddHeader(GetFactionData(1272), ITEMS, COMPLETE)
+			tooltip:AddHeader(TILLERS_FACTION_NAME, ITEMS, COMPLETE)
 
 			local showComplete = FeedTillersDB.showComplete
 			local showBestFriends = FeedTillersDB.showBestFriends
@@ -176,14 +209,14 @@ local function CreateBroker()
 				local name, standingID = GetFactionData(npc.factionID)
 				npc.name, npc.standingID = name, standingID
 				local itemName = FeedTillersDB.Tillers[npc.name] or npc.item or "..."
-				local hasNextLevel = C_GossipInfo.GetFriendshipReputation(npc.factionID).nextThreshold
+				local hasNextLevel = C_GossipInfo_GetFriendshipReputation(npc.factionID).nextThreshold
 
 				local line
 				if showBestFriends or hasNextLevel then
-					if not C_QuestLog.IsQuestFlaggedCompleted(npc.questID) then
-						local count = C_Item.GetItemCount(npc.itemID)
-						line = tooltip:AddLine(npc.name, itemName, format("%d/%d", count, 5))
-						if count < 5 then
+					if not C_QuestLog_IsQuestFlaggedCompleted(npc.questID) then
+						local count = C_Item_GetItemCount(npc.itemID)
+						line = tooltip:AddLine(npc.name, itemName, format("%d/%d", count, DAILY_ITEM_COUNT))
+						if count < DAILY_ITEM_COUNT then
 							tooltip:SetLineTextColor(line, 1, 0.27, 0, 0.7)
 						end
 						if not hasNextLevel then
@@ -203,20 +236,22 @@ local function CreateBroker()
 				end
 			end
 
-			tooltip:AddLine(" ")
-			tooltip:SetCell(tooltip:AddLine(" "), 1, NORMAL_FONT_COLOR_CODE .. L["Click to sort by Tiller name or item name"], "LEFT", 3)
-			tooltip:SetCell(tooltip:AddLine(" "), 1, NORMAL_FONT_COLOR_CODE .. L["<Shift> + Click to toggle showing completed quests"], "LEFT", 3)
-			tooltip:SetCell(tooltip:AddLine(" "), 1, NORMAL_FONT_COLOR_CODE .. L["<Control> + Click to toggle showing Best Friends"], "LEFT", 3)
+			tooltip:AddLine(TOOLTIP_BLANK)
+			tooltip:SetCell(tooltip:AddLine(TOOLTIP_BLANK), 1, NORMAL_FONT_COLOR_CODE .. L["Click to sort by Tiller name or item name"], TOOLTIP_ALIGN_LEFT, TOOLTIP_SPAN_ALL)
+			tooltip:SetCell(tooltip:AddLine(TOOLTIP_BLANK), 1, NORMAL_FONT_COLOR_CODE .. L["<Shift> + Click to toggle showing completed quests"], TOOLTIP_ALIGN_LEFT, TOOLTIP_SPAN_ALL)
+			tooltip:SetCell(tooltip:AddLine(TOOLTIP_BLANK), 1, NORMAL_FONT_COLOR_CODE .. L["<Control> + Click to toggle showing Best Friends"], TOOLTIP_ALIGN_LEFT, TOOLTIP_SPAN_ALL)
 			if TomTom then
-				tooltip:SetCell(tooltip:AddLine(" "), 1, NORMAL_FONT_COLOR_CODE .. L["Click a Tiller's line to set a waypoint in TomTom"], "LEFT", 3)
+				tooltip:SetCell(tooltip:AddLine(TOOLTIP_BLANK), 1, NORMAL_FONT_COLOR_CODE .. L["Click a Tiller's line to set a waypoint in TomTom"], TOOLTIP_ALIGN_LEFT, TOOLTIP_SPAN_ALL)
 			end
 
 			tooltip:Show()
 		end,
 
 		OnLeave = function(self)
-			qtip:Release(self.tooltip)
-			self.tooltip = nil
+			if activeTooltip then
+				qtip:Release(activeTooltip)
+				activeTooltip = nil
+			end
 		end
 	})
 end
@@ -232,6 +267,9 @@ event_frame:SetScript("OnEvent", function(_, event)
 		FeedTillersDB.showComplete = FeedTillersDB.showComplete or true
 		FeedTillersDB.showBestFriends = FeedTillersDB.showBestFriends or true
 		FeedTillersDB.currentSort = FeedTillersDB.currentSort or "NAME"
+
+		-- Pre-Cache Tillers faction name
+		TILLERS_FACTION_NAME = GetFactionData(1272)
 
 		-- Pre-cache faction names & item names at login
 		for _, npc in ipairs(npcs) do
