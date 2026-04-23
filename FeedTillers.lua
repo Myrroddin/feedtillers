@@ -5,7 +5,7 @@
 	Automatically caches all required item names at login.
 
 	Author: @project-author@
-	Copyright: © 2012-2025 Paul Vandersypen. All rights reserved.
+	Copyright: © 2012-2026 Paul Vandersypen. All rights reserved.
 	Version: @project-version@
 	Date: @project-date-iso@
 --]]
@@ -22,8 +22,8 @@ local qtip = LibStub("LibQTip-1.0")
 local TomTom = TomTom -- Optional dependency
 
 -- API compatibility flags
-local isMainline = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
-local isMists    = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
+local isMainline	= WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
+local isMists		= WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
 
 -------------------------------------------------
 -- Unified Faction API Wrapper
@@ -50,23 +50,25 @@ end})
 
 -- Locale-specific placeholders (replaced at build time)
 if LOCALE == "deDE" then
-	--@localization(locale="deDE", format="lua_additive_table")@
-elseif LOCALE == "esES" or LOCALE == "esMX" then
-	--@localization(locale="esES", format="lua_additive_table")@
+--@localization(locale="deDE", format="lua_additive_table")@
+elseif LOCALE == "esES" then
+--@localization(locale="esES", format="lua_additive_table")@
+elseif LOCALE == "esMX" then
+--@localization(locale="esMX", format="lua_additive_table")@
 elseif LOCALE == "frFR" then
-	--@localization(locale="frFR", format="lua_additive_table")@
+--@localization(locale="frFR", format="lua_additive_table")@
 elseif LOCALE == "itIT" then
-	--@localization(locale="itIT", format="lua_additive_table")@
+--@localization(locale="itIT", format="lua_additive_table")@
 elseif LOCALE == "koKR" then
-	--@localization(locale="koKR", format="lua_additive_table")@
+--@localization(locale="koKR", format="lua_additive_table")@
 elseif LOCALE == "ptBR" then
-	--@localization(locale="ptBR", format="lua_additive_table")@
+--@localization(locale="ptBR", format="lua_additive_table")@
 elseif LOCALE == "ruRU" then
-	--@localization(locale="ruRU", format="lua_additive_table")@
+--@localization(locale="ruRU", format="lua_additive_table")@
 elseif LOCALE == "zhCN" then
-	--@localization(locale="zhCN", format="lua_additive_table")@
+--@localization(locale="zhCN", format="lua_additive_table")@
 elseif LOCALE == "zhTW" then
-	--@localization(locale="zhTW", format="lua_additive_table")@
+--@localization(locale="zhTW", format="lua_additive_table")@
 end
 
 -------------------------------------------------

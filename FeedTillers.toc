@@ -1,16 +1,16 @@
-## Interface: 120001, 50503
+## Interface: 120005, 50503
 ## Title: Feed Tillers
 ## Notes: Tells you the Tiller, what food they like, and if you have fed them today for the quests A Dish for ...
-## Notes-ruRU: @localization(locale="ruRU", key="Description", namespace="ToC")@
 ## Notes-deDE: @localization(locale="deDE", key="Description", namespace="ToC")@
-## Notes-koKR: @localization(locale="koKR", key="Description", namespace="ToC")@
-## Notes-esMX: @localization(locale="esMX", key="Description", namespace="ToC")@
 ## Notes-esES: @localization(locale="esES", key="Description", namespace="ToC")@
+## Notes-esMX: @localization(locale="esMX", key="Description", namespace="ToC")@
+## Notes-frFR: @localization(locale="frFR", key="Description", namespace="ToC")@
+## Notes-itIT: @localization(locale="itIT", key="Description", namespace="ToC")@
+## Notes-koKR: @localization(locale="koKR", key="Description", namespace="ToC")@
 ## Notes-ptBR: @localization(locale="ptBR", key="Description", namespace="ToC")@
+## Notes-ruRU: @localization(locale="ruRU", key="Description", namespace="ToC")@
 ## Notes-zhCN: @localization(locale="zhCN", key="Description", namespace="ToC")@
 ## Notes-zhTW: @localization(locale="zhTW", key="Description", namespace="ToC")@
-## Notes-itIT: @localization(locale="itIT", key="Description", namespace="ToC")@
-## Notes-frFR: @localization(locale="frFR", key="Description", namespace="ToC")@
 ## IconTexture: Interface\ICONS\Achievement_Profession_ChefHat
 
 ## Version: @project-version@
