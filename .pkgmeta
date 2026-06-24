@@ -12,6 +12,10 @@ optional-dependencies:
   - tomtom
 
 ignore:
-  - LibStub/tests
+  - Libs/LibStub/tests
+  - Libs/*/*.txt
   - Libs/*/*.textile
+  - Libs/*/*.md
+  - Libs/*/*.toc
+  - Libs/LibQTip-1.0/LibStub
   - README.md
