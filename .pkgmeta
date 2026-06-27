@@ -3,7 +3,10 @@ wowi-archive-previous: no
 
 externals:
   Libs/LibStub: https://repos.curseforge.com/wow/libstub/trunk
-  Libs/LibQTip-1.0: https://repos.curseforge.com/wow/libqtip-1-0
+  Libs/CallbackHandler-1.0: https://repos.curseforge.com/wow/callbackhandler/trunk/CallbackHandler-1.0
+  Libs/LibQTip-2.0:
+    url: https://github.com/Torhal/LibQTip-2.0/tree/main/LibQTip-2.0
+    curse-slug: libqtip-2-0
   Libs/LibDataBroker-1.1:
     url: https://github.com/tekkub/libdatabroker-1-1/
     curse-slug: libdatabroker-1-1
@@ -17,5 +20,4 @@ ignore:
   - Libs/*/*.textile
   - Libs/*/*.md
   - Libs/*/*.toc
-  - Libs/LibQTip-1.0/LibStub
   - README.md

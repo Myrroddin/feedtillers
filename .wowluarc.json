@@ -1,0 +1,24 @@
+{
+  "$schema": "https://raw.githubusercontent.com/TradeSkillMaster/wowlua-ls/main/editors/vscode/wowluarc.schema.json",
+  "ignore": [
+    ".vscode/",
+    ".github/",
+    "*.md",
+    "LICENSE",
+    ".gitignore",
+    ".pkgmeta"
+  ],
+  "library": [
+    "Libs/"
+  ],
+  "framexml": true,
+  "flavors": [
+    "classic",
+    "retail"
+  ],
+  "diagnostics": {
+    "enable": [
+      "need-check-nil"
+    ]
+  }
+}

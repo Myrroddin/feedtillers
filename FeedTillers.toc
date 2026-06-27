@@ -37,10 +37,11 @@
 
 ## SavedVariables: FeedTillersDB
 
-## OptionalDeps: LibStub, LibQTip-1.0, LibDataBroker-1.1, TomTom
+## OptionalDeps: LibStub, CallbackHandler-1.0, LibQTip-2.0, LibDataBroker-1.1, TomTom
 
 Libs\LibStub\LibStub.lua
-Libs\LibQTip-1.0\LibQTip-1.0.lua
+Libs\CallbackHandler-1.0\CallbackHandler-1.0.xml
+Libs\LibQTip-2.0\Manifest.xml
 Libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
 
 FeedTillers.lua
