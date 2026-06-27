@@ -1,5 +1,5 @@
 --[[
-	FeedTillers Addon
+	FeedTillers AddOn
 	Shows daily gift requirements for Tiller NPCs in Valley of the Four Winds.
 	Works with both Retail (Mainline) and Mists of Pandaria Classic.
 	Automatically caches all required item names at login.
@@ -11,11 +11,15 @@
 --]]
 
 -------------------------------------------------
--- Addon Setup & Constants
+-- AddOn Setup & Signifcant Variables
 -------------------------------------------------
-local ADDON = ...
-local ADDON_TITLE = C_AddOns.GetAddOnMetadata(ADDON, "Title")
+local ADDON_TITLE = "Feed Tillers"
 local LOCALE = GetLocale()
+local activeTooltip = nil
+local BULLET_ICON = "|TInterface\\ICONS\\INV_Misc_Gem_Pearl_01:10:10:0:0|t "
+local COMPLETE, ITEMS, YES = COMPLETE, ITEMS, YES
+local NORMAL_FONT_COLOR_CODE = NORMAL_FONT_COLOR_CODE
+local TILLERS_FACTION_NAME = nil
 
 -- Upvalues for frequently used globals/API calls.
 local C_GossipInfo_GetFriendshipReputation = C_GossipInfo.GetFriendshipReputation
@@ -24,30 +28,32 @@ local C_Map_GetBestMapForUnit = C_Map.GetBestMapForUnit
 local C_Map_GetMapInfo = C_Map.GetMapInfo
 local C_QuestLog_IsQuestFlaggedCompleted = C_QuestLog.IsQuestFlaggedCompleted
 local format = string.format
-local IsShiftKeyDown, IsControlKeyDown = IsShiftKeyDown, IsControlKeyDown
+local IsControlKeyDown, IsShiftKeyDown = IsControlKeyDown, IsShiftKeyDown
 local ipairs = ipairs
 local print = print
 local sort = table.sort
 local tostring = tostring
 
-
--- Constants
-local activeTooltip
-local DAILY_ITEM_COUNT = 5
-local ITEMS, COMPLETE, YES = ITEMS, COMPLETE, YES
-local NORMAL_FONT_COLOR_CODE = NORMAL_FONT_COLOR_CODE
-local TILLERS_FACTION_NAME
-local TOOLTIP_ALIGN_LEFT = "LEFT"
-local TOOLTIP_ALIGN_RIGHT = "RIGHT"
-local TOOLTIP_AUTO_HIDE_DELAY = 0.1
-local TOOLTIP_BLANK = " "
-local TOOLTIP_COLS = 3
-local TOOLTIP_KEY = "FeedTillersTT"
-
 local event_frame = CreateFrame("Frame")
 ---@type LibQTip-2.0
 local qtip = LibStub("LibQTip-2.0")
 local qtipCallbacks = {}
+
+-------------------------------------------------
+-- LibQTip-2.0 Tooltip Helpers
+-------------------------------------------------
+local function SetRowTextColor(row, r, g, b, a)
+	if row then
+		row:SetTextColor(r, g, b, a)
+	end
+end
+
+local function ReleaseActiveTooltip()
+	if activeTooltip then
+		qtip:ReleaseTooltip(activeTooltip)
+		activeTooltip = nil
+	end
+end
 
 local function HandleTooltipRelease(_, tooltip)
 	if activeTooltip == tooltip then
@@ -169,46 +175,31 @@ local function UseTomTom(npc)
 	local uiMapID = C_Map_GetBestMapForUnit("player")
 	local info = uiMapID and C_Map_GetMapInfo(uiMapID)
 	if not info or info.parentMapID ~= 424 then
-		print("|cFF00FF00FeedTillers:|r " .. L["You are not on Pandaria currently. Once you are on that continent the waypoint arrow will display."])
+		print("|cFF00FF00Feed Tillers:|r " .. L["You are not on Pandaria currently. Once you are on that continent the waypoint arrow will display."])
 	end
-end
-
--------------------------------------------------
--- LibQTip-2.0 Tooltip Helpers
--------------------------------------------------
-local function SetRowTextColor(row, r, g, b, a)
-	if row then
-		row:SetTextColor(r, g, b, a)
-	end
-end
-
-local function AddTooltipTextLine(tooltip, text)
-	local row = tooltip:AddHeadingRow(text)
-	-- row:GetCell(1):SetColSpan(2):SetJustifyH(TOOLTIP_ALIGN_LEFT)
-	return row
 end
 
 -------------------------------------------------
 -- Broker Object Creation
 -------------------------------------------------
 local function CreateBroker()
-	LibStub("LibDataBroker-1.1"):NewDataObject(ADDON, {
+	LibStub("LibDataBroker-1.1"):NewDataObject(ADDON_TITLE, {
 		type = "data source",
-		text = "",
+		text = ADDON_TITLE,
 		icon = [[Interface/ICONS/Achievement_Profession_ChefHat]],
 
 		OnClick = function(self)
 			if IsShiftKeyDown() then
 				FeedTillersDB.showComplete = not FeedTillersDB.showComplete
-				print("|cFF00FF00FeedTillers:|r " .. (FeedTillersDB.showComplete and L["Showing completed quest for the day."] or L["Hiding completed quest for the day."]))
+				print("|cFF00FF00Feed Tillers:|r " .. (FeedTillersDB.showComplete and L["Showing completed quest for the day."] or L["Hiding completed quest for the day."]))
 			elseif IsControlKeyDown() then
 				FeedTillersDB.showBestFriends = not FeedTillersDB.showBestFriends
-				print("|cFF00FF00FeedTillers:|r " .. (FeedTillersDB.showBestFriends and L["Showing Best Friends."] or L["Hiding Best Friends."]))
+				print("|cFF00FF00Feed Tillers:|r " .. (FeedTillersDB.showBestFriends and L["Showing Best Friends."] or L["Hiding Best Friends."]))
 			else
 				FeedTillersDB.currentSort = (FeedTillersDB.currentSort == "NAME") and "ITEM" or "NAME"
 				sort(npcs, FeedTillersDB.currentSort == "NAME" and sortByName or sortByItem)
 			end
-			self:GetScript("OnLeave")(self)
+			ReleaseActiveTooltip()
 			self:GetScript("OnEnter")(self)
 		end,
 
@@ -224,13 +215,13 @@ local function CreateBroker()
 				CacheAllItems() -- Ensure all items are cached on first hover
 			end
 
-			local tooltip = qtip:AcquireTooltip(TOOLTIP_KEY, TOOLTIP_COLS, TOOLTIP_ALIGN_LEFT, TOOLTIP_ALIGN_LEFT, TOOLTIP_ALIGN_RIGHT)
+			local tooltip = qtip:AcquireTooltip("FeedTillersTT", 3, "LEFT", "LEFT", "RIGHT")
 			activeTooltip = tooltip
 			tooltip:SmartAnchorTo(self)
-			tooltip:SetAutoHideDelay(TOOLTIP_AUTO_HIDE_DELAY, self)
+			tooltip:SetAutoHideDelay(0.1, self)
 			tooltip:EnableMouse(true)
 			tooltip:Clear()
-			tooltip:AddHeadingRow(TILLERS_FACTION_NAME or ADDON_TITLE or ADDON, ITEMS, COMPLETE)
+			tooltip:AddHeadingRow(TILLERS_FACTION_NAME or ADDON_TITLE, ITEMS, COMPLETE)
 
 			local showComplete = FeedTillersDB.showComplete
 			local showBestFriends = FeedTillersDB.showBestFriends
@@ -247,8 +238,8 @@ local function CreateBroker()
 					if showBestFriends or hasNextLevel then
 						if not C_QuestLog_IsQuestFlaggedCompleted(npc.questID) then
 							local count = C_Item_GetItemCount(npc.itemID)
-							line = tooltip:AddRow(name, itemName, format("%d/%d", count, DAILY_ITEM_COUNT))
-							if count < DAILY_ITEM_COUNT then
+							line = tooltip:AddRow(name, itemName, format("%d/%d", count, 5))
+							if count < 5 then
 								SetRowTextColor(line, 1, 0.27, 0, 0.7)
 							end
 							if not hasNextLevel then
@@ -271,30 +262,18 @@ local function CreateBroker()
 				end
 			end
 
-			tooltip:AddRow(TOOLTIP_BLANK):GetCell(1):SetColSpan(TOOLTIP_COLS)
+			tooltip:AddRow(" ")
 			tooltip:AddSeparator()
-			tooltip:AddRow(TOOLTIP_BLANK):GetCell(1):SetColSpan(TOOLTIP_COLS)
-			--[[
-			tooltip:AddHeadingRow(NORMAL_FONT_COLOR_CODE .. L["Click to sort by Tiller name or item name"])
-			tooltip:AddHeadingRow(NORMAL_FONT_COLOR_CODE .. L["<Shift> + Click to toggle showing completed quests"])
-			tooltip:AddHeadingRow(NORMAL_FONT_COLOR_CODE .. L["<Control> + Click to toggle showing Best Friends"])
-			--]]
-			AddTooltipTextLine(tooltip, NORMAL_FONT_COLOR_CODE .. L["Click to sort by Tiller name or item name"])
-			AddTooltipTextLine(tooltip, NORMAL_FONT_COLOR_CODE .. L["<Shift> + Click to toggle showing completed quests"])
-			AddTooltipTextLine(tooltip, NORMAL_FONT_COLOR_CODE .. L["<Control> + Click to toggle showing Best Friends"])
+			tooltip:AddRow(" ")
+			tooltip:AddHeadingRow():GetCell(1):SetColSpan(0):SetText(BULLET_ICON .. NORMAL_FONT_COLOR_CODE .. L["Click to sort by Tiller name or item name"])
+			tooltip:AddHeadingRow():GetCell(1):SetColSpan(0):SetText(BULLET_ICON .. NORMAL_FONT_COLOR_CODE .. L["<Shift> + Click to toggle showing completed quests"])
+			tooltip:AddHeadingRow():GetCell(1):SetColSpan(0):SetText(BULLET_ICON .. NORMAL_FONT_COLOR_CODE .. L["<Control> + Click to toggle showing Best Friends"])
 			if TomTom then
-				AddTooltipTextLine(tooltip, NORMAL_FONT_COLOR_CODE .. L["Click a Tiller's line to set a waypoint in TomTom"])
+				tooltip:AddHeadingRow():GetCell(1):SetColSpan(0):SetText(BULLET_ICON .. NORMAL_FONT_COLOR_CODE .. L["Click a Tiller's line to set a waypoint in TomTom"])
 			end
 
 			tooltip:Show()
 		end,
-
-		OnLeave = function(self)
-			if activeTooltip then
-				qtip:ReleaseTooltip(activeTooltip)
-				activeTooltip = nil
-			end
-		end
 	})
 end
 
