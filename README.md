@@ -2,7 +2,7 @@
 
 A simple Data Broker (LDB) plugin that lists the Tiller, what food they want for the quests **A Dish for ...** and if you have completed that quest today.
 
-## You need a LibDataBroker "Broker" display.
+## You need a LibDataBroker "Broker" display
 
 Some examples include ChocolateBar, NinjaPanel, Fortress, StatCore. While Titan Panel supports Broker plugins, it is not a native Broker display, and comes preloaded with its own Titan plugins. The advantage of Broker displays (aside from Titan Panel) is that you can change display addons without impacting plugins or plugin settings.
 

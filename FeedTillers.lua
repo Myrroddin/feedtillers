@@ -35,7 +35,6 @@ local sort = table.sort
 local tostring = tostring
 
 local event_frame = CreateFrame("Frame")
----@type LibQTip-2.0
 local qtip = LibStub("LibQTip-2.0")
 local qtipCallbacks = {}
 
@@ -64,18 +63,13 @@ end
 qtip.RegisterCallback(qtipCallbacks, "OnReleaseTooltip", HandleTooltipRelease)
 local TomTom = TomTom -- Optional dependency
 
--- API compatibility flags
----@type boolean
----@flavor-narrows retail
-local isMainline = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
+local isStandard = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 
 -------------------------------------------------
 -- Unified Faction API Wrapper
 -------------------------------------------------
----@param factionID number
----@return (string name, number standingID, string? standingText) | (nil, nil, nil)
 local function GetFactionData(factionID)
-	if isMainline then
+	if isStandard then
 		local data = C_Reputation.GetFactionDataByID(factionID)
 		if not data then return nil, nil, nil end
 		return data.name, data.reaction, _G["FACTION_STANDING_LABEL"..data.reaction]
@@ -292,7 +286,7 @@ event_frame:SetScript("OnEvent", function(_, event)
 		-- Pre-Cache Tillers faction name
 		TILLERS_FACTION_NAME = GetFactionData(1272)
 
-		-- Pre-cache faction names & item names at login
+		-- Pre-cache faction names & item names
 		for _, npc in ipairs(npcs) do
 			local name = GetFactionData(npc.factionID)
 			if name then
